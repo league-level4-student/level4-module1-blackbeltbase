@@ -14,7 +14,7 @@ public class IntroToEnums {
 	
 	public static void main(String[] args) {
 		// Enum objects can be created and initialized:
-		DataTypes data = DataTypes.INTEGER;
+		DataTypes data = DataTypes.LONG;
 		
 		//They can then be used for comparison
 		if(data == DataTypes.INTEGER) {
