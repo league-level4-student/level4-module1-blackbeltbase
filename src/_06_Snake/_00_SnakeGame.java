@@ -87,10 +87,16 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		switch(choice) {
 		case"Expert":
 			timer.setDelay(100);
+			JOptionPane.showMessageDialog(null, "Expert mode chosen");
+			break;
 		case"Moderate":
 			timer.setDelay(300);
+			JOptionPane.showMessageDialog(null, "Moderate mode chosen");
+			break;
 		case "Beginner":
 			timer.setDelay(450);
+			JOptionPane.showMessageDialog(null, "Beginner mode chosen");
+			break;
 			default:
 				JOptionPane.showMessageDialog(null, "Beginner mode chosen");
 				timer.setDelay(450);
@@ -117,14 +123,19 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_UP:
 			snake.setDirection(Direction.UP);
+			break;
 		case KeyEvent.VK_DOWN:
 			snake.setDirection(Direction.DOWN);
+			break;
 		case KeyEvent.VK_RIGHT:
 			snake.setDirection(Direction.RIGHT);
+			break;
 		case KeyEvent.VK_LEFT:
 			snake.setDirection(Direction.LEFT);
+			break;
 		case KeyEvent.VK_SPACE:
 			snake.feed();
+			break;
 		}
 		// if an arrow key is pressed, set the snake's 
 		// direction accordingly
@@ -136,10 +147,9 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 	private void setFoodLocation() {
 		//1. Create a new Location object that is set to a random location
 		Location location = new Location(ran.nextInt(WIDTH),ran.nextInt(HEIGHT));
-		foodLocation = location;
+		this.foodLocation = location;
 		//2. set the foodLocation variable equal to the Location object you just created.
 		//   use the snake's isLocationOnSnake method to make sure you don't put the food on the snake
-		foodLocation = location;
 		if(snake.isLocationOnSnake(location)) {
 			setFoodLocation();
 		}
@@ -150,7 +160,7 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		//1. stop the timer
 		timer.stop();
 		//2. tell the user their snake is dead
-		JOptionPane.showMessageDialog(null, "Your snake is dead. OMEGELUL");
+		JOptionPane.showMessageDialog(null, "Your snake is dead. ");
 		//3. ask them if they want to play again.
 		String[] yesNo = new String[] {"Yes", "No"};
 		int input = JOptionPane.showOptionDialog(null, "Do you want to play again?", "replay", 0, -1, null, yesNo, 0);
@@ -182,7 +192,9 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		}
 		//3. if the location of the head is equal to the location of the food,
 		// 	 feed the snake and set the food location
-		if(snake.getHeadLocation()==foodLocation) {
+		System.out.println("Head x y :"+snake.getHeadLocation().x + ","+snake.getHeadLocation().y);
+		System.out.println("Food x y :"+foodLocation.x+","+foodLocation.y);
+		if(snake.getHeadLocation().x==foodLocation.x && snake.getHeadLocation().y==foodLocation.y) {
 			snake.feed();
 			setFoodLocation();
 		}
